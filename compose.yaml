@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      - DJANGO_DB_DIR=/app/data
+    volumes:
+      - blog_data:/app/data
+
+volumes:
+  blog_data:
